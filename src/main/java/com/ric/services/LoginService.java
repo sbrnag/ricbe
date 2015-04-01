@@ -14,6 +14,6 @@ public interface LoginService {
 	
 	public Response forgetPassword(String mailId);
 	
-	public Response resetPassword(String token, String password);
+	public Response resetPassword(String user, String token, String password);
 
 }

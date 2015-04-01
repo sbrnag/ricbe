@@ -6,7 +6,6 @@ import java.util.Set;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
-import javax.ws.rs.HeaderParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
@@ -113,11 +112,11 @@ public class LoginResource {
 	 */
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
-	@Path("/resetPassword/{sessionid}/{password}")
-	public Response resetPassword(@PathParam("sessionid") String sessionId,
+	@Path("/resetPassword/{user}/{token}/{password}")
+	public Response resetPassword(@PathParam("user") String user, @PathParam("token") String token,
 			@PathParam("password") String password) {
 
-		return loginService.resetPassword(sessionId, password);
+		return loginService.resetPassword(user, token, password);
 	}
 
 }

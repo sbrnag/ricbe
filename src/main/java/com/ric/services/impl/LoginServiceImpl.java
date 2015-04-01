@@ -190,12 +190,13 @@ public class LoginServiceImpl implements LoginService {
 				sessionId = session.getSessionId();
 			}*/
 				//hash the password
-				String token = user.getUserName() + "?" +user.getPassword() ;
+				String userName = user.getUserName();
+				String token =user.getPassword() ;
 				
 				String from = "referralindiadomains@gmail.com";
 				String to = mailId;
 				String subject = AppConstants.RESET_PASSWORD_MAIL_SUBJECT;
-				String body = "http://localhost:9090/referralindia/resetPassword/" + token;
+				String body = "http://localhost:9090/ric/changepassword.html?user=" + userName + "&token=" + token;
 				mailService.sendMail(from, to, subject, body);
 				response = getResponse(200, MediaType.APPLICATION_JSON, AppConstants.FORGET_PASSWORD_RESPONSE_MESSAGE);
 			} else{
@@ -209,15 +210,9 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public Response resetPassword(String token, String password) {
+	public Response resetPassword(String userName, String currentPassword, String password) {
 		Response response;
 		try {
-			
-			String[] str = token.split("?");
-			String userName = str[0];	
-			String currentPassword = str[1];
-			
-			
 			
 		/*Session session = sessionRepository.getSessionByID(sessionId);
 		if(session != null) {
